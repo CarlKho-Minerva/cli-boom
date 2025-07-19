@@ -35,4 +35,4 @@ Want to change the sounds or the commands?
 The installer places everything in your `~/.zshrc` file within clear markers (`# --- CLI-Boom Start ---`). You can edit this section directly to change the commands or point to different sound files located in the `~/.cli-boom` directory.
 
 ---
-*Built for the love of code (and silly noises).*
+*Built for the [love of code](https://github.blog/open-source/for-the-love-of-code-2025/) (and silly noises).*
