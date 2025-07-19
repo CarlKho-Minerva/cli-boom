@@ -4,8 +4,8 @@ echo "🚀 Installing CLI-Boom! Let's make your terminal noisy."
 
 # --- Configuration ---
 # IMPORTANT: Replace these with the RAW URLs from your own GitHub repository.
-KUBECTL_SOUND_URL="https://raw.githubusercontent.com/CarlKho-Minerva/cli-boom/main/vine-boom.mp3"
-IMPOSTOR_SOUND_URL="https://raw.githubusercontent.com/CarlKho-Minerva/cli-boom/main/impostor.mp3"
+KUBECTL_SOUND_URL="https://raw.githubusercontent.com/YOUR_USERNAME/cli-boom/main/vine-boom.mp3"
+IMPOSTOR_SOUND_URL="https://raw.githubusercontent.com/YOUR_USERNAME/cli-boom/main/impostor.mp3"
 
 # Paths
 ZSHRC_PATH="$HOME/.zshrc"
