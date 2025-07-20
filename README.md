@@ -5,7 +5,7 @@ Sound effects for your favorite (and most dangerous) command-line tools. Make yo
 
 <img width="423" height="210" alt="image" src="https://github.com/user-attachments/assets/d49a9965-aa27-4993-aa75-72ee4c0171a2" />
 
-*Erm it's audio, so just imagine it?*
+*Erm it's audio, so just imagine it?* [Upvote here](https://www.producthunt.com/products/cli-boom?launch=cli-boom)
 
 ---
 
