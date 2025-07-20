@@ -3,7 +3,7 @@
 echo "🚀 Installing CLI-Boom! Let's make your terminal noisy."
 
 # --- Configuration ---
-# IMPORTANT: Replace these with the RAW URLs from your own GitHub repository.
+# Raw URLs from the GitHub repository
 KUBECTL_SOUND_URL="https://raw.githubusercontent.com/YOUR-USERNAME/cli-boom/main/vine-boom.mp3"
 IMPOSTOR_SOUND_URL="https://raw.githubusercontent.com/YOUR-USERNAME/cli-boom/main/impostor.mp3"
 
@@ -17,24 +17,20 @@ IMPOSTOR_SOUND_PATH="$SOUND_DIR/impostor.mp3"
 ZSH_FUNCTION_SNIPPET=$(cat <<'EOF'
 
 # --- CLI-Boom Start ---
-# As-you-type sound for `kubectl`
-_cli_boom_kubectl_widget() {
+# As-you-type sound effects
+_cli_boom_widget() {
     zle .self-insert
-    if [[ "$BUFFER" == "git" ]]; then
+
+    # Check for kubectl
+    if [[ "$BUFFER" == "kubectl" ]]; then
         if command -v afplay &> /dev/null; then # macOS
             afplay "$HOME/.cli-boom/vine-boom.mp3" &!
         elif command -v paplay &> /dev/null; then # Linux (PulseAudio)
             paplay "$HOME/.cli-boom/vine-boom.mp3" &!
         fi
     fi
-}
-zle -N cli-boom-kubectl-widget _cli_boom_kubectl_widget
-for key in {a..z}; do
-    bindkey "$key" cli-boom-kubectl-widget
-done
 
-_cli_boom_git_force_widget() {
-    zle .self-insert
+    # Check for git push --force
     if [[ "$BUFFER" == "git push --force" ]]; then
         if command -v afplay &> /dev/null; then # macOS
             afplay "$HOME/.cli-boom/impostor.mp3" &!
@@ -44,29 +40,11 @@ _cli_boom_git_force_widget() {
         fi
     fi
 }
-zle -N cli-boom-git-force-widget _cli_boom_git_force_widget
-for key in {a..z}; do
-    bindkey "$key" cli-boom-git-force-widget
+
+zle -N cli-boom-widget _cli_boom_widget
+for key in {a..z} {A..Z} {0..9} ' ' '-'; do
+    bindkey "$key" cli-boom-widget
 done
-
-# Pre-execution sound for dangerous commands
-_cli_boom_preexec() {
-    # Check for `git push --force`
-    if [[ "$1" == *"git"* && "$1" == *"push"* && "$1" == *"--force"* ]]; then
-        if command -v afplay &> /dev/null; then # macOS
-            afplay "$HOME/.cli-boom/impostor.mp3" &!
-        elif command -v paplay &> /dev/null; then # Linux (PulseAudio)
-            paplay "$HOME/.cli-boom/impostor.mp3" &!
-        fi
-        # Add a small delay to let the sound play and give the user a moment of panic
-        sleep 1
-    fi
-}
-
-# Add the preexec hook if it's not already there
-if [[ -z "${preexec_functions[(r)_cli_boom_preexec]}" ]]; then
-    preexec_functions+=(_cli_boom_preexec)
-fi
 # --- CLI-Boom End ---
 
 EOF
